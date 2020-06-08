@@ -1,6 +1,7 @@
 class ZomatoService
-  def closest_restaurant(coordinates)
-    response = conn.get('api/v2.1/geocode') do |req|
+  def closest_restaurant(coordinates, keyword)
+    response = conn.get('api/v2.1/search') do |req|
+      req.params[:q] = keyword
       req.params[:lat] = coordinates['lat']
       req.params[:lon] = coordinates['lng']
     end
@@ -17,7 +18,7 @@ class ZomatoService
 
   def extract_info(response)
     json = JSON.parse(response.body, symbolize_headers:true)
-    restaurant = json['nearby_restaurants'].first['restaurant']
+    restaurant = json['restaurants'].first['restaurant']
       {name: restaurant['name'],
     address: restaurant['location']['address']}
   end

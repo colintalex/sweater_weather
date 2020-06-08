@@ -11,7 +11,7 @@ class Api::V1::FoodieController < ApplicationController
 
   def foodie_info(data)
     info = get_travel_info(data)
-      Foodie.new({travel_time: info['distance']['text'],
+      Foodie.new({travel_time: info['duration']['text'],
                  end_location: data['end'],
                      forecast: get_forecast(info['end_location']),
                    restaurant: get_restaurant(info['end_location']) })
@@ -26,6 +26,6 @@ class Api::V1::FoodieController < ApplicationController
   end
 
   def get_restaurant(coordinates)
-    ZomatoService.new.closest_restaurant(coordinates)
+    ZomatoService.new.closest_restaurant(coordinates, foodie_params[:search])
   end
 end
