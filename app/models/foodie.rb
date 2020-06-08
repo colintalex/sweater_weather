@@ -1,0 +1,3 @@
+class Foodie
+  
+end
