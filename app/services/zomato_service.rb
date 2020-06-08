@@ -4,10 +4,7 @@ class ZomatoService
       req.params[:lat] = coordinates['lat']
       req.params[:lon] = coordinates['lng']
     end
-    json = JSON.parse(response.body, symbolize_headers:true)
-    restaurant = json['nearby_restaurants'].first['restaurant']
-    {name: restaurant['name'],
-      address: restaurant['location']['address']}
+    extract_info(response)
   end
 
   private
@@ -16,5 +13,12 @@ class ZomatoService
     Faraday.new('https://developers.zomato.com') do |f|
       f.headers['user-key'] = ENV['ZOMATO_API_KEY']
     end
+  end
+
+  def extract_info(response)
+    json = JSON.parse(response.body, symbolize_headers:true)
+    restaurant = json['nearby_restaurants'].first['restaurant']
+      {name: restaurant['name'],
+    address: restaurant['location']['address']}
   end
 end
