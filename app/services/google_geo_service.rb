@@ -10,6 +10,13 @@ class GoogleGeoService
     get_photo_url(photo_ref)
   end
 
+  def travel_time(origin, destination)
+    response = conn.get('maps/api/directions/json') do |req|
+      req.params[:origin] = origin
+      req.params[:destination] = destination
+    end
+  end
+
   private
 
   def conn
