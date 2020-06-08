@@ -1,6 +1,7 @@
 class Api::V1::FoodieController < ApplicationController
   def show
-    render json: FoodieSerializer.new(foodie(foodie_params))
+    foodie_obj = Foodie.new(foodie(foodie_params))
+    render json: FoodieSerializer.new(foodie_obj)
   end
 
   private
@@ -15,6 +16,8 @@ class Api::V1::FoodieController < ApplicationController
     new_data[:travel_time] = info['distance']['text']
     new_data[:end_location] = data[:end]
     new_data[:forecast] = get_forecast(info['end_location'])
+    new_data[:restaurant] = get_restaurant(info['end_location'])
+    new_data
   end
 
   def get_travel_info(data)
@@ -24,7 +27,12 @@ class Api::V1::FoodieController < ApplicationController
   end
 
   def get_forecast(coordinates)
-    response = OpenWeatherService.new.get_forecast(coordinates)
-    response['current']['weather'].first['description']
+    json = OpenWeatherService.new.get_forecast(coordinates)
+        {summary: json['current']['weather'].first['description'],
+     temperature: json['current']['temp']}
+  end
+
+  def get_restaurant(coordinates)
+    json = ZomatoService.new.closest_restaurant(coordinates)
   end
 end
