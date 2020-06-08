@@ -7,8 +7,14 @@ describe "Food Search Query" do
     expect(response).to be_successful
     require "pry"; binding.pry
     json = JSON.parse(response.body, symbolize_headers: true)
+    
     expect(json[:data]).to be_a(Hash)
     expect(json[:data][:type]).to eql('foodie')
+    expect(jason[:data][:attributes]).to be_a(Hash)
+    expect(jason[:data][:attributes][:end_location]).to be_a(String)
+    expect(jason[:data][:attributes][:travel_time]).to be_a(String)
+    expect(jason[:data][:attributes][:forecast]).to be_a(Hash)
+    expect(jason[:data][:attributes][:restaurant]).to be_a(Hash)
 
   end
 end
