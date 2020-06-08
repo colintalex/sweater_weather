@@ -15,6 +15,8 @@ class GoogleGeoService
       req.params[:origin] = origin
       req.params[:destination] = destination
     end
+    json = JSON.parse(response.body, symbolize_headers: true)
+    json['routes'].first['legs'].first
   end
 
   private
