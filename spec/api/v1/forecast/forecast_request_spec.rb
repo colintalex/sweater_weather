@@ -19,8 +19,5 @@ describe "Forecast API Query" do
     get '/api/v1/backgrounds?location=vail,co'
 
     expect(response).to be_successful
-    require "pry"; binding.pry
-
-
   end
 end
