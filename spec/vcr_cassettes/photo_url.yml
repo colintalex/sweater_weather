@@ -1,0 +1,53 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://maps.googleapis.com/maps/api/place/photo?key=GoogleGeo Key>&maxheight=400&photoreference=CmRaAAAAE1mdDV2FTRlnumLhchOwXuClxOGBOxHCwFV4MhYL6vS3rL1rbuZ2K-dm3aoaGj9U3Y6Y7JCFRsuBxDmzs96cAuPR4pIwOTJBHV7lykQ-6V4HUV0zAnWEd573DwNCnkQ2EhCcwlIP5PtJeqOVBon6mPYhGhRgtUTHbzchsvrVZJKnjn8HZKRATQ
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.0.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 302
+      message: Found
+    headers:
+      Date:
+      - Wed, 10 Jun 2020 09:25:01 GMT
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      Cache-Control:
+      - no-cache, must-revalidate
+      Location:
+      - https://lh3.googleusercontent.com/p/AF1QipOB9bbho9gPmGyOjUX5of99x-LRYfH_RNETR9EX=s1600-h400
+      Content-Type:
+      - text/html; charset=UTF-8
+      Server:
+      - scaffolding on HTTPServer2
+      Content-Length:
+      - '288'
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      Server-Timing:
+      - gfet4t7; dur=36
+      Alt-Svc:
+      - h3-27=":443"; ma=2592000,h3-25=":443"; ma=2592000,h3-T050=":443"; ma=2592000,h3-Q050=":443";
+        ma=2592000,h3-Q049=":443"; ma=2592000,h3-Q048=":443"; ma=2592000,h3-Q046=":443";
+        ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
+    body:
+      encoding: UTF-8
+      string: "<HTML><HEAD><meta http-equiv=\"content-type\" content=\"text/html;charset=utf-8\">\n<TITLE>302
+        Moved</TITLE></HEAD><BODY>\n<H1>302 Moved</H1>\nThe document has moved\n<A
+        HREF=\"https://lh3.googleusercontent.com/p/AF1QipOB9bbho9gPmGyOjUX5of99x-LRYfH_RNETR9EX=s1600-h400\">here</A>.\r\n</BODY></HTML>\r\n"
+  recorded_at: Wed, 10 Jun 2020 09:25:01 GMT
+recorded_with: VCR 6.0.0
