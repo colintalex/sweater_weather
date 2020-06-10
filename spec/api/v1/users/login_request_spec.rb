@@ -34,5 +34,24 @@ describe "User Login Request" do
     post '/api/v1/sessions', params: user_params
 
     expect(response.status).to eql(401)
+    json = JSON.parse(response.body, symbolize_names: true)
+    expect(json[:data][:type]).to eql('error')
+    expect(json[:data][:attributes][:description]).to eql('Incorrect password, please try again')
+  end
+
+  it "can return an error message if the email is not registered" do
+    user = User.create({ "email": "whatever@example.com",
+                      "password": "password",
+         "password_confirmation": "password" })
+   user_params = {
+                   "email": "whichever@example.com",
+                   "password": "password",
+                 }
+    post '/api/v1/sessions', params: user_params
+
+    expect(response.status).to eql(401)
+    json = JSON.parse(response.body, symbolize_names: true)
+    expect(json[:data][:type]).to eql('error')
+    expect(json[:data][:attributes][:description]).to eql('Email is not registered. Please sign-up for access.')
   end
 end
