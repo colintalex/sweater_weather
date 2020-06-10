@@ -1,28 +1,30 @@
 class GoogleGeoService
-  def get_coords(location)
-    json = get_json(location)
-    json['results'].first['geometry']['location']
-  end
-
-  def get_image(location)
-    json = get_photo_reference(location)
-    photo_ref = json['candidates'][0]['photos'][0]['photo_reference']
-    get_photo_url(photo_ref)
-  end
-
-  private
-
   def conn
     Faraday.new('https://maps.googleapis.com') do |f|
       f.params[:key] = ENV['GOOGLE_GEO_API_KEY']
     end
   end
 
-  def get_json(location)
+  def get_coords(location)
     response = conn.get('maps/api/geocode/json?') do |req|
       req.params[:address] = location
     end
-    JSON.parse(response.body, symbolize_headers: true)
+    json = JSON.parse(response.body, symbolize_names: true)
+    json[:results].first[:geometry][:location]
+  end
+
+  def get_directions(origin, destination)
+    response = conn.get('maps/api/directions/json?') do |req|
+      req.params[:origin] = origin
+      req.params[:destination] = destination
+    end
+    json = JSON.parse(response.body, symbolize_names: true)
+  end
+
+  def get_image(location)
+    json = get_photo_reference(location)
+    photo_ref = json[:candidates][0][:photos][0][:photo_reference]
+    get_photo_url(photo_ref)
   end
 
   def get_photo_reference(location)
@@ -31,7 +33,7 @@ class GoogleGeoService
       req.params[:inputtype] = 'textquery'
       req.params[:fields] = 'photos'
     end
-    JSON.parse(response.body, symbolize_headers: true)
+    JSON.parse(response.body, symbolize_names: true)
   end
 
   def get_photo_url(ref)
@@ -39,6 +41,6 @@ class GoogleGeoService
       req.params[:photoreference] = ref
       req.params[:maxheight] = '400'
     end
-    response.headers['location']
+    response.headers[:location]
   end
 end
