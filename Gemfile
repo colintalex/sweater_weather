@@ -10,7 +10,8 @@ gem 'fast_jsonapi'
 gem 'pry'
 gem 'faraday'
 gem 'figaro'
-
+gem 'json'
+gem 'bcrypt'
 
 gem 'bootsnap', '>= 1.1.0', require: false
 
