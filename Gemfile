@@ -17,6 +17,9 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 group :test do
   gem 'shoulda-matchers'
+  gem 'simplecov', require: false
+  gem 'webmock'
+  gem 'vcr'
 end
 
 group :development, :test do
