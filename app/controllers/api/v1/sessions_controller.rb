@@ -4,7 +4,7 @@ class Api::V1::SessionsController < ApplicationController
     if @user.authenticate(params[:password])
       render json: UsersSerializer.new(@user)
     else
-
+      require "pry"; binding.pry
     end
   end
 
