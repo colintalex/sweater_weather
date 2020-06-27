@@ -5,7 +5,7 @@ describe "Forecast API Query" do
     get '/api/v1/forecast?location=denver,co'
 
     expect(response).to be_successful
-    forecast_data = JSON.parse(response.body, symbolize_headers: true)
+    forecast_data = JSON.parse(response.body, symbolize_names: true)
     forecast = forecast_data['data']['attributes']
 
     expect(forecast['current']).to be_a(Hash)
