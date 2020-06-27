@@ -12,3 +12,7 @@ script:
 - yarn
 - bundle exec rails db:{create,migrate} RAILS_ENV=test
 - bundle exec rspec
+deploy:
+  provider: heroku
+  app: sweater-weather-api-cta
+  run: rails db:migrate
