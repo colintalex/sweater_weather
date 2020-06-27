@@ -21,7 +21,7 @@ RSpec.describe GoogleGeoService do
   end
 
   it "can return travel info from an origin and destination" do
-    VCR.use_cassette('directions') do
+    VCR.use_cassette('directions', record: :new_episodes) do
       origin = 'Denver,CO'
       destination = 'Pueblo,CO'
       service = GoogleGeoService.new
@@ -35,7 +35,7 @@ RSpec.describe GoogleGeoService do
   end
 
   it "can return a photo reference id" do
-    VCR.use_cassette('photo_reference') do
+    VCR.use_cassette('photo_reference', record: :new_episodes) do
       location = 'Denver,CO'
       service = GoogleGeoService.new
       ref = service.get_photo_reference(location)
@@ -47,7 +47,7 @@ RSpec.describe GoogleGeoService do
 
   it "can return a photo url using a reference id" do
     ref =  "CmRaAAAAE1mdDV2FTRlnumLhchOwXuClxOGBOxHCwFV4MhYL6vS3rL1rbuZ2K-dm3aoaGj9U3Y6Y7JCFRsuBxDmzs96cAuPR4pIwOTJBHV7lykQ-6V4HUV0zAnWEd573DwNCnkQ2EhCcwlIP5PtJeqOVBon6mPYhGhRgtUTHbzchsvrVZJKnjn8HZKRATQ"
-    VCR.use_cassette('photo_url') do
+    VCR.use_cassette('photo_url', record: :new_episodes) do
       maxheight = '400'
       service = GoogleGeoService.new
       photo_url = service.get_photo_url(ref)
