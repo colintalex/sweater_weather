@@ -6,13 +6,13 @@ describe "Forecast API Query" do
 
     expect(response).to be_successful
     forecast_data = JSON.parse(response.body, symbolize_names: true)
-    forecast = forecast_data['data']['attributes']
+    forecast = forecast_data[:data][:attributes]
 
-    expect(forecast['current']).to be_a(Hash)
-    expect(forecast['hourly']).to be_a(Array)
-    expect(forecast['hourly'].first).to be_a(Hash)
-    expect(forecast['hourly']).to be_a(Array)
-    expect(forecast['daily'].first).to be_a(Hash)
+    expect(forecast[:current]).to be_a(Hash)
+    expect(forecast[:hourly]).to be_a(Array)
+    expect(forecast[:hourly].first).to be_a(Hash)
+    expect(forecast[:hourly]).to be_a(Array)
+    expect(forecast[:daily].first).to be_a(Hash)
   end
 
   it "can return the image of the current city" do
