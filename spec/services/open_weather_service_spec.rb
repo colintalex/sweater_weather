@@ -8,7 +8,7 @@ RSpec.describe OpenWeatherService do
   end
 
   it "can return weather data for a latitude and longitude" do
-    VCR.use_cassette('latlong_weather') do
+    VCR.use_cassette('latlong_weather', record: :new_episodes) do
       coordinates = { lat: 27.7676008, lng: -82.64029149999999 }
       service = OpenWeatherService.new
       weather_data = service.get_forecast(coordinates)
