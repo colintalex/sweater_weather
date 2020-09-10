@@ -62,4 +62,3 @@ https://sweater-weather-api-cta.herokuapp.com/
   - PostgreSQL
   - `rails db:{create,migrate}` for setup
   
-  ![TeamImage](https://github.com/coloniusrex/sweater_weather/blob/master/team_index.png)
